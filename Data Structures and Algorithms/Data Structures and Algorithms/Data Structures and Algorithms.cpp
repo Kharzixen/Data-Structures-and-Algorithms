@@ -1,30 +1,16 @@
-#include "Vector.h"
 #include "Algorithm.h"
-#include "LinkedList.h"
 #include <iostream>
+#include "Queue.h"
 
 int main() {
-    linked_list<int> linkedList;
-
-    linkedList.append(1);
-    linkedList.append(2);
-    linkedList.append(3);
-
-    linkedList.insert(5, 1);
-    linkedList.print();
-    linkedList.remove(1);
-    std::cout << std::endl;
-    linkedList.print();
-
-
-    int arr[5] = { 10, 30, 20, 50, 40 };
-    quicksort(&arr[0], &arr[4]); 
+    const int n = 15; 
+    int arr[n] = { 3, 9, 14, 1, 7, 5, 10, 2, 6, 11, 15, 13,12, 4, 8 };
+    quicksort_iterative(&arr[0], &arr[n-1]); 
 
     std::cout << std::endl; 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < n; i++) {
         std::cout << arr[i] << " ";
     }
-
-
+    
     return 0;
 }

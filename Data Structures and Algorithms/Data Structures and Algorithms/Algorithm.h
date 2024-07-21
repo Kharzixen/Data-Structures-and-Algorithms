@@ -2,6 +2,7 @@
 
 #include <cstdlib> 
 #include <ctime> 
+#include "Stack.h"
 
 template<typename T>
 void custom_swap(T* a, T* b) {
@@ -37,5 +38,33 @@ void quicksort(T* start, T* end) {
         T* p = partition(start, end);
         quicksort(start, p - 1);
         quicksort(p + 1, end);
+    }
+}
+
+template<typename T> 
+void quicksort_iterative(T* start, T* end) {
+    if (start >= end) return;
+
+    Stack<T*> stack = Stack<T*>();
+    stack.push(start);
+    stack.push(end);
+
+    while (!stack.isEmpty()) {
+        end = stack.peak();
+        stack.pop();
+        start = stack.peak();
+        stack.pop();
+
+        T* p = partition(start, end);
+
+        if (p - 1 > start) {
+            stack.push(start);
+            stack.push(p - 1);
+        }
+
+        if (p + 1 < end) {
+            stack.push(p + 1);
+            stack.push(end);
+        }
     }
 }
